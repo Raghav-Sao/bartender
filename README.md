@@ -94,7 +94,7 @@ Example curl request:
 ```bash
 curl -X POST http://localhost:3000/order -H "Content-Type: application/json" -d '{"customerId": "1", "type": "BEER"}'
 ```
-#### GET `/served-orders`
+#### GET `/served`
 Retrieve a list of all served drink orders.
 
 - **Response**::
@@ -113,9 +113,9 @@ Retrieve a list of all served drink orders.
 Example curl request:
 
 ```bash
-curl -X GET http://localhost:3000/served-orders
+curl -X GET http://localhost:3000/served
 ```
-#### POST `/set-prep-time` 
+#### POST `/config/prepTime` 
 Set the drink preparation time.
 
 -**Request Body**::
@@ -144,7 +144,7 @@ Set the drink preparation time.
 
 
 ```bash
-curl -X POST http://localhost:3000/set-prep-time -H "Content-Type: application/json" -d '{"prepTime": 10}'
+curl -X POST http://localhost:3000/config/prepTime -H "Content-Type: application/json" -d '{"prepTime": 10}'
 ```
 #### Logging
 All actions and errors are logged using Winston, and logs can be found in the logs/app.log file.
