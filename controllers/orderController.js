@@ -4,9 +4,8 @@ const logger = require('../utils/logger');
 exports.placeOrder = (req, res) => {
     try {
         let { customerId, type } = req.body;
-
-        if (typeof customerId === 'string') customerId = customerId.trim();
-        if (typeof type === 'string') type = type.trim();
+        customerId = customerId.toString().trim();
+        type = type.toString().trim();
 
         if (!customerId) {
             logger.warn(`Invalid customerId. ${customerId}, drink: ${type}`);
@@ -15,7 +14,7 @@ exports.placeOrder = (req, res) => {
 
         if (type !== 'BEER' && type !== 'DRINK') {
             logger.warn(`Invalid drink type. ${customerId}, drink: ${type}`);
-            return res.status(400).send({ message: 'Invalid drink type. Please choose either "BEER" or "DRINK".' });
+            return res.status(400).send({ message: 'Invalid drink type. Please choose either BEER or DRINK.' });
         }
 
         const { duplicateOrder, orderStage } = bartender.hasActiveOrServedOrder(customerId, type);
@@ -23,7 +22,7 @@ exports.placeOrder = (req, res) => {
             logger.info(`Duplicate order detected. Customer: ${customerId}, drink: ${type}`);
             return res.status(200).send({ message: `Order already being ${orderStage}` });
         }
-
+        
         if (!bartender.canPrepareDrink(type)) {
             logger.warn(`Bartender is busy. Customer: ${customerId}, drink: ${type}`);
             return res.status(429).send({ message: 'Bartender is busy, please try again later.' });
