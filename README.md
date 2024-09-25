@@ -153,3 +153,8 @@ All actions and errors are logged using Winston, and logs can be found in the lo
 The application runs in-memory, and there is no persistent storage.
 The application runs on a single node.
 The bartender prepares drinks in the configured time without further notifications after order acceptance.
+
+## Important Notes
+
+- **Log File**: Currently, the log file is not included in the `.gitignore`. Please be aware that the logs will be tracked in the repository until you decide to add it to the `.gitignore` file.
+
